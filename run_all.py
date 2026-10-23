@@ -57,7 +57,7 @@ def grafico_02(r: dict[str, pd.DataFrame], pasta) -> None:
     a.plot(call.mes, call.pct_dinheiro_call, marker="o", color=COR, label="Call: objeção na transcrição")
     a.set_ylim(0, 100)
     a.set_title("% de perdas por dinheiro, duas réguas")
-    a.legend(frameon=False, loc="lower left")
+    a.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.08), ncol=2)
     c = r["crm_por_closer"].sort_values("pct_do_total_dinheiro")
     cores = [COR_2 if v > 10 else CINZA for v in c.pct_do_total_dinheiro]
     b.barh(c.closer, c.pct_do_total_dinheiro, color=cores)
@@ -85,9 +85,10 @@ def grafico_04(r: dict[str, pd.DataFrame], pasta) -> None:
     x = range(len(f))
     a.bar([i - 0.2 for i in x], f.leads_pessoa, width=0.4, color=CINZA, label="Leads (pessoa)")
     a.bar([i + 0.2 for i in x], f.mql_pessoa, width=0.4, color=COR, label="MQL (pessoa)")
-    a.set_xticks(list(x), f.mes)
+    meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    a.set_xticks(list(x), [meses[int(str(m)[5:7]) - 1] for m in f.mes])
     a.set_title("Lead e MQL ancorados no primeiro toque")
-    a.legend(frameon=False, loc="lower left")
+    a.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.08), ncol=2)
     d = r["destino_do_mql"]
     rotulos = [s.split(". ", 1)[1] for s in d.destino]
     cores = [COR if s.startswith("1") else COR_2 if s.startswith("2") else CINZA for s in d.destino]
