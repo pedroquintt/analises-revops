@@ -1,0 +1,4 @@
+forma_pagamento,compras,transacoes,reembolsos,taxa_por_compra,taxa_por_transacao
+boleto_parcelado,311,1188.0,38,12.2,3.2
+cartao_parcelado,529,529.0,52,9.8,9.8
+pix,311,441.0,9,2.9,2.0
